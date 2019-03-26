@@ -16,7 +16,7 @@ int client(int argc, char **argv) {
     }
     int sock;
     struct sockaddr_in server;
-    char message[256], server_reply[256];
+    char message[max_message_length], server_reply[max_message_length];
 
     //Create socket
     sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -71,7 +71,7 @@ int client(int argc, char **argv) {
         if (FD_ISSET(sock, &r_set)) {
             //Receive a reply from the server
 
-            if (recv(sock, server_reply, 256, 0) < 0) {
+            if (recv(sock, server_reply, max_message_length, 0) < 0) {
                 puts("recv failed");
                 break;
             }
@@ -89,7 +89,7 @@ int client(int argc, char **argv) {
 
 int buffer_message(char *message) {
 
-    int bytes_read = read(STDIN_FILENO, after, (unsigned int) (256 - inbuf));
+    int bytes_read = read(STDIN_FILENO, after, (unsigned int) (max_message_length - inbuf));
     short flag = -1; // indicates if returned_data has been set
     inbuf += bytes_read;
     int where; // location of network newline

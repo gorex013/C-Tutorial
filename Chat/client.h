@@ -23,6 +23,7 @@ int find_network_newline(char *message, int inbuf);
 #define COMPLETE 0
 #define BUF_SIZE 256
 
+static const int max_message_length = 1024;
 static int inbuf; // how many bytes are currently in the buffer?
 static int room; // how much room left in buffer?
 static char *after; // pointer to position after the received characters

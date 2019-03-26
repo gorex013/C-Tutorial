@@ -149,23 +149,22 @@ int server(int argc, char **argv) {
                     close(sd);
                     client_socket[i] = 0;
                     free(names[i]);
-                }
-
-                    //Echo back the message that came in
-                else {
+                } else {
                     //set the string terminating NULL byte on the end
                     //of the data read
 
-                    buffer[valread] = '\0';
+//                    buffer[valread] = '\0';
                     char *new_buffer = (char *) malloc(1048);
 
                     strcat(new_buffer, names[i]);
                     strcat(new_buffer, ": ");
 
                     strcat(new_buffer, buffer);
+                    strcat(new_buffer, "\r");
+                    new_buffer[strlen(new_buffer)] = '\0';
                     for (int j = 0; j < max_clients; ++j)
                         if (client_socket[j] != sd)
-                            send(client_socket[j], new_buffer, strlen(new_buffer), 0);
+                            send(client_socket[j], new_buffer, strlen(new_buffer) + 1, 0);
                     memset(new_buffer, 0, strlen(new_buffer));
                 }
             }
