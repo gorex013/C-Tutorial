@@ -1,0 +1,7 @@
+3.1 (a) 0.000129688 ms
+    (b) 8.125e-05 ms
+    (c) 7.8125e-05 ms
+    (d) As it can be seen the average iteration time is lowering and the reason is changing the variables to being register variables.
+    As a conclusion the register variables are much optimal choice in case of performance.
+
+3.2 (a) This problem can be solved by declaring variable `the_dictionary` as static variable. Now it cannot be changed during
