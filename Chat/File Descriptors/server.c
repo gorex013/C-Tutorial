@@ -97,7 +97,7 @@ int server(int argc, char **argv) {
         //then its an incoming connection
         if (FD_ISSET(master_socket, &readfds)) {
             if ((new_socket = accept(master_socket,
-                                     (struct sockaddr *) &address, (socklen_t * ) & addrlen)) < 0) {
+                                     (struct sockaddr *) &address, (socklen_t *) &addrlen)) < 0) {
                 perror("accept");
                 exit(EXIT_FAILURE);
             }
@@ -142,7 +142,7 @@ int server(int argc, char **argv) {
                 if ((valread = read(sd, buffer, 1024)) == 0) {
                     //Somebody disconnected , get his details and print
                     getpeername(sd, (struct sockaddr *) &address, \
-                        (socklen_t * ) & addrlen);
+                        (socklen_t *) &addrlen);
                     printf("Host disconnected , ip %s , port %d \n",
                            inet_ntoa(address.sin_addr), ntohs(address.sin_port));
                     //Close the socket and mark as 0 in list for reuse
